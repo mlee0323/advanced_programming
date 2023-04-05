@@ -3,7 +3,6 @@
 
 void dictionary(vector<string>& words) {
     ifstream ifs("words.txt");
-    if (!ifs) error("Failed to open");
     string word;
     while (ifs >> word) {
         if (word.length() == 5) {
@@ -78,15 +77,17 @@ int dictionary_option(int dictionary_num, int max_dictionary) {
     return dictionary_num;
 }
 
+
+
 void showDictionary() {
     bool exitFlag = false;
     vector<string> words;
     dictionary(words);
     sortWords(words);
     while (!exitFlag) {
-        cout << "<<< DICTIONARY >>>" << endl;
-        cout << "1. Print" << endl;
-        cout << "2. Return" << endl << endl;
+        cout << "[ DICTIONARY ]" << endl
+            << "1. Print" << endl
+            << "2. Return" << endl << endl ;
         int selection;
         selection = 0;
         selection = dictionary_option(selection, 2);
@@ -106,17 +107,6 @@ void showDictionary() {
     }
 }
 
-
-void DictionaryMenu() {
-    bool exitFlag = false;
-    srand(time(nullptr));
-    while (!exitFlag) {
-
-    }
-    cout << "[ DICTIONARY ]" << endl
-        << "1. Print" << endl
-        << "2. Return" << endl;
-}
 void Menu() {
     cout << "<<<WORDLE>>>" << endl
         << "1. Dictionary" << endl
@@ -148,12 +138,12 @@ void GameMenu() {
     }
 }
 
-int choice_option(int choice_num, int max_num) {
-    while (choice_num < 1 || choice_num > max_num) {
+int main_option(int main_num, int max_num) {
+    while (main_num < 1 || main_num > max_num) {
         cout << "Choose an option (1-3): ";
-        cin >> choice_num;
+        cin >> main_num;
     }
-    return choice_num;
+    return main_num;
 }
 
 int main() {
@@ -163,7 +153,7 @@ int main() {
         Menu();
         int selection;
         selection = 0;
-        selection = choice_option(selection, 3);
+        selection = main_option(selection, 3);
         cout << endl;
         if (selection == 1) {
             showDictionary();
